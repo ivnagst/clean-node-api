@@ -14,7 +14,7 @@ A Clean Architecture é uma abordagem que enfatiza a separação de preocupaçõ
 ## Estrutura do projeto
 A estrutura do projeto segue o padrão recomendado pela Clean Architecture, com quatro camadas distintas:
 
-**Domain Layer:** contém as regras de negócio e as entidades do domínio.
-**Application Layer:** contém a lógica de aplicação, incluindo os casos de uso da aplicação.
-**Infrastructure Layer:** contém a implementação concreta de repositórios e serviços, além de outros recursos de infraestrutura.
-**Presentation Layer:** contém a lógica de apresentação e as interfaces de usuário.
+- **Domain Layer:** contém as regras de negócio e as entidades do domínio.
+- **Application Layer:** contém a lógica de aplicação, incluindo os casos de uso da aplicação.
+- **Infrastructure Layer:** contém a implementação concreta de repositórios e serviços, além de outros recursos de infraestrutura.
+- **Presentation Layer:** contém a lógica de apresentação e as interfaces de usuário.
