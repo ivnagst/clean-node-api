@@ -5,11 +5,11 @@ Este é um projeto de API construído com base no conceito de Clean Architecture
 A Clean Architecture é uma abordagem que enfatiza a separação de preocupações e a independência de frameworks ou bibliotecas externas. Isso permite que o código seja facilmente testável, mantido e estendido ao longo do tempo.
 
 ## Tecnologias utilizadas
->TypeScript
->Node.js
->Express
->TypeORM
->Jest
+-TypeScript
+-Node.js
+-Express
+-TypeORM
+-Jest
 
 ## Estrutura do projeto
 A estrutura do projeto segue o padrão recomendado pela Clean Architecture, com quatro camadas distintas:
