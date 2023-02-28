@@ -1,13 +1,20 @@
 import { SignUpController } from "./signup";
-import { InvalidParamError, MissingParamError, ServerError } from "../../errors";
+import {
+  InvalidParamError,
+  MissingParamError,
+  ServerError,
+} from "../../errors";
 import { EmailValidator } from "./signup-protocols";
 import { AccountModel } from "../../../domain/models/account";
-import { AddAccount, AddAccountModel } from "../../../domain/usecases/add-account";
+import {
+  AddAccount,
+  AddAccountModel,
+} from "../../../domain/usecases/add-account";
 
 interface SutTypes {
   sut: SignUpController;
   emailValidatorStub: EmailValidator;
-  addAccountStub: AddAccount
+  addAccountStub: AddAccount;
 }
 
 const makeEmailValidator = (): EmailValidator => {
@@ -50,7 +57,7 @@ const makeSut = (): SutTypes => {
   return {
     sut,
     emailValidatorStub,
-    addAccountStub
+    addAccountStub,
   };
 };
 
@@ -183,7 +190,7 @@ describe("SignUp Controller", () => {
     expect(httpResponse.statusCode).toBe(500);
     expect(httpResponse.body).toEqual(new ServerError());
   });
-  
+
   test("Should call EmailValidator with the correct email", () => {
     const { sut, emailValidatorStub } = makeSut();
     const isValidSpy = jest.spyOn(emailValidatorStub, "isValid");
@@ -198,6 +205,7 @@ describe("SignUp Controller", () => {
     sut.handle(httpRequest);
     expect(isValidSpy).toHaveBeenCalledWith("invalid_mail@mail.com");
   });
+
   test("Should call AddAccount with correct values", () => {
     const { sut, addAccountStub } = makeSut();
     const addSpy = jest.spyOn(addAccountStub, "add");
@@ -214,6 +222,26 @@ describe("SignUp Controller", () => {
       name: "any_name",
       email: "any_mail@mail.com",
       password: "anypass",
+    });
+  });
+
+  test("Should return 200 if valid data is provided", () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        name: "any_name",
+        email: "any_mail@mail.com",
+        password: "anypass",
+        passwordConfirmation: "any_password",
+      },
+    };
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(200);
+    expect(httpResponse.body).toEqual({
+      id: "valid_id",
+      name: "valid_name",
+      email: "valid_email@mail.com",
+      password: "valid_password",
     });
   });
 });
