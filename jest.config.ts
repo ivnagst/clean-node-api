@@ -11,4 +11,5 @@ export default {
   transform: {
     ".+\\.ts$": "ts-jest"
   },
+  "bail": 1,
 };
